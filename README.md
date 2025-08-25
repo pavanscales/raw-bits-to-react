@@ -1,5 +1,4 @@
-# From First Principles to the Web Browser
-**A 12-Week Frontend Engineering Curriculum**
+# From CPU to the Browser
 
 This course takes you from hardware and browser fundamentals to advanced frontend engineering with React/Next.js, performance optimization, and deep debugging skills. Every week builds on first principles with hands-on projects.
 
