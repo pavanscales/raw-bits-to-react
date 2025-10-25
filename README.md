@@ -1,83 +1,299 @@
 # From CPU to the Browser
+**The definitive low-level frontend engineering course**
 
-This course takes you from hardware and browser fundamentals to advanced frontend engineering with React/Next.js, performance optimization, and deep debugging skills. Every week builds on first principles with hands-on projects.
+Master every layer from bare metal to production React. Build browsers, engines, and frameworks from scratch.
 
 ---
 
-## Course Outline
+## Week 0.5 – CPU & Memory Architecture
 
-### Week 0.5 – Layer 0: Hardware & Browser Fundamentals
-- CPU: pipelines, registers, instruction execution, stalls
-- Memory hierarchy: cache, RAM, stack/heap
-- How JS and DOM translate to pixels
-- Optional: minimal CPU simulation to run JS & DOM
-- **Exercise:** Trace JS execution and memory usage at CPU level
+**Hardware fundamentals**
+- CPU pipelines: fetch, decode, execute, writeback
+- Register allocation and instruction scheduling
+- Branch prediction and pipeline stalls
+- Cache hierarchy: L1/L2/L3, cache lines, false sharing
+- Memory addressing: virtual memory, MMU, TLB
+- Stack vs heap allocation strategies
 
-### Week 1 – Layer 1: Networking & Data Flow
-- TCP/IP & HTTP implementation from scratch
-- TLS/HTTPS handshake
-- WebSocket client/server
-- Simulate latency, packet loss, congestion
-- Debug raw network packets
-- **Exercise:** Build minimal HTTP server/client, profile network impact on UI
+**Low-level execution**
+- Assembly language basics (x86-64)
+- System calls and kernel interaction
+- How C/C++ compiles to machine code
+- Memory layout: text, data, BSS, stack, heap
+- Pointer arithmetic and memory alignment
 
-### Weeks 2-3 – Layer 2: Browser Engine Core
-- HTML parser → DOM tree (handle quirks & edge cases)
-- CSS parser → cascade, specificity, inheritance, media queries
-- Layout engine: box model, flex, grid, floats, positioning
-- Paint engine: pixels, text metrics, font rendering, colors
-- Rendering pipeline optimization & debugging
-- **Project:** Render static HTML/CSS in terminal or canvas
+**Project:** Write assembly that allocates memory and executes basic operations. Trace CPU pipeline execution for JS code using performance counters.
 
-### Weeks 4-5 – Layer 3: JavaScript Engine
-- Interpreter: expressions, loops, closures, prototypes
-- Call stack, scope chain, microtask/macrotask queues
-- Memory management & garbage collection
-- Connect JS execution to DOM & layout
-- Optional: mini JIT for performance
-- **Project:** Interactive mini-browser executing JS apps
+---
 
-### Week 6 – Layer 4: Virtual DOM & Reactive Systems
-- Component system: state, props, lifecycle
-- Manual diffing & reconciliation
-- Repaint/reflow optimization
-- Event binding & async handling
-- Stress-test: heavy DOM updates & animations
-- **Project:** Reactive UI without frameworks
+## Week 1 – Networking from Scratch
 
-### Week 7 – Layer 5: Framework Principles
-- React internals: JSX → React.createElement
-- Fiber architecture & concurrent rendering
-- Hooks: useState, useEffect, useRef
-- SSR, SSG, ISR, routing, data fetching lifecycles
-- Hydration, lazy loading, dynamic imports
-- **Project:** Replicate mini-React framework + SSR/CSR pipeline
+**Socket programming**
+- Raw sockets: IP packets, TCP segments, UDP datagrams
+- Three-way handshake implementation
+- Sliding window protocol and flow control
+- Congestion control algorithms (TCP Reno, Cubic)
+- Packet fragmentation and reassembly
 
-### Week 8 – Layer 6: Frontend Performance
-- CPU/memory profiling, repaint/reflow timings
-- Virtual DOM diff optimization
-- Lazy loading, caching, incremental rendering
-- Network-aware performance optimization
-- **Project:** Benchmark & optimize React/Next.js app under high load
+**Protocol implementation**
+- HTTP/1.1 parser: chunked encoding, headers, keep-alive
+- HTTP/2: binary framing, multiplexing, HPACK compression
+- TLS handshake: cipher suites, certificate verification, key exchange
+- WebSocket upgrade and frame masking
 
-### Week 9 – Layer 7: Engine Debugging & Extension
-- Modify JS or browser engine
-- Debug DOM updates, event loops, rendering pipeline
-- Integrate WebAssembly for performance-critical features
-- Simulate bottlenecks and edge cases
-- **Project:** Optimize bottlenecked React/Next.js app
+**Network debugging**
+- tcpdump and Wireshark packet analysis
+- strace for system call tracing
+- Network simulation: latency, jitter, packet loss
 
-### Weeks 10-10.5 – Layer 8: Optional Hardware / Stress Testing
-- Run JS & DOM on microcontroller/FPGA simulation
-- Stress-test CPU/memory limits
-- Debug rendering and UI under extreme conditions
-- **Project:** Benchmark browser rendering on simulated hardware
+**Project:** HTTP/1.1 and HTTP/2 server in C or Rust. Profile every syscall and packet. Build WebSocket chat with custom protocol.
 
-### Weeks 11-12 – Capstone Projects
-- Build a complete frontend system:
-  - SSR + hydration + concurrent rendering
-  - Advanced React patterns + hooks + Suspense
-  - Profiling, network-aware, edge-case handling
-  - Stress-test animations, DOM updates, layout recalculations
-- Optional: WebAssembly modules for performance
-- Optional: Hardware limit simulation
+---
+
+## Weeks 2-3 – Browser Engine Implementation
+
+**HTML parsing**
+- Tokenization state machine (13 states, 67 transitions)
+- Tree construction algorithm
+- Error recovery and quirks mode
+- Parser-blocking scripts and async/defer
+
+**CSS engine**
+- Tokenizer and parser (grammar implementation)
+- Selector matching with specificity calculation
+- Cascade resolution algorithm
+- Style computation and inheritance
+- Media query evaluation
+
+**Layout engine**
+- Box model calculation
+- Normal flow, floats, positioning schemes
+- Flexbox algorithm: main/cross axis, flex basis, grow, shrink
+- Grid algorithm: track sizing, placement, spanning
+- Line breaking and text shaping
+
+**Paint and composite**
+- Layer tree construction
+- Paint recording and display lists
+- Rasterization strategies
+- GPU compositing and texture management
+
+**Project:** Build a browser engine in C++ or Rust that renders Wikipedia. Handle fonts, images, CSS animations. Measure every phase: parse, style, layout, paint, composite.
+
+---
+
+## Weeks 4-5 – JavaScript Engine
+
+**Parsing and AST**
+- Lexical analysis and tokenization
+- Recursive descent parser
+- AST construction and validation
+- Scope analysis and symbol resolution
+
+**Interpreter implementation**
+- Bytecode design and instruction set
+- Stack-based VM execution
+- Closure implementation with environment chains
+- Prototype chain traversal
+- Property lookup optimization (inline caches)
+
+**Memory management**
+- Mark-and-sweep garbage collection
+- Generational collection (young/old generations)
+- Incremental and concurrent GC
+- WeakMap and WeakSet implementation
+- Memory profiling and leak detection
+
+**Event loop mechanics**
+- Microtask queue (Promise.then)
+- Macrotask queue (setTimeout, I/O)
+- Animation frame callbacks
+- Idle callbacks and scheduling
+- Task prioritization
+
+**Optional: JIT compilation**
+- Inline caching and polymorphic inline caching
+- Type feedback and speculative optimization
+- Deoptimization and bailout mechanisms
+- Register allocation
+
+**Project:** JS engine executing real programs. Implement closures, prototypes, async/await, event loop. Profile GC pauses and optimize hot paths. Connect to DOM for interactive apps.
+
+---
+
+## Week 6 – Virtual DOM & Reconciliation
+
+**Diffing algorithms**
+- Tree diffing complexity analysis (O(n³) → O(n))
+- Key-based reconciliation
+- Heuristics: component type, element type, lists
+- Fiber architecture preparation
+
+**Batching and scheduling**
+- Requestanimationframe-based updates
+- Double buffering for UI consistency
+- Priority queues for updates
+- Time slicing for interruptibility
+
+**Repaint/reflow optimization**
+- Layout thrashing detection
+- Read/write batching (FastDOM pattern)
+- CSS containment and layer creation
+- Composite-only animations
+
+**Project:** Virtual DOM library with optimized reconciliation. Stress test with 10,000+ dynamic nodes. Profile layout/paint timings.
+
+---
+
+## Week 7 – React/Next.js Internals
+
+**Fiber reconciler**
+- Work loop and unit of work
+- Reconciliation phases: render and commit
+- Effect list construction
+- Priority levels and lane model
+
+**Hooks implementation**
+- Hooks queue and cursor
+- useEffect cleanup and dependency checking
+- useRef mutable container
+- useCallback/useMemo memoization
+- Custom hook composition
+
+**Concurrent features**
+- Time slicing and work interruption
+- Suspense and lazy loading
+- useTransition and useDeferredValue
+- Automatic batching
+
+**Server-side rendering**
+- renderToString vs renderToPipeableStream
+- Progressive hydration and selective hydration
+- Double pass problem and solutions
+- Edge rendering vs Node rendering
+
+**Next.js architecture**
+- File-based routing implementation
+- SSG: getStaticProps build-time execution
+- ISR: revalidation and stale-while-revalidate
+- API routes and middleware
+- Module bundling and code splitting
+
+**Project:** Clone React's core reconciler with Fiber and hooks. Build SSR framework with streaming and hydration. Implement file-based routing.
+
+---
+
+## Week 8 – Performance Engineering
+
+**Profiling tools**
+- Chrome DevTools: Performance tab deep dive
+- React DevTools Profiler
+- Lighthouse metrics: FCP, LCP, TTI, CLS, FID
+- Custom performance marks and measures
+- Heap snapshots and allocation timelines
+
+**Optimization techniques**
+- Component memoization strategies
+- Virtualized lists and windowing
+- Image optimization: formats, lazy loading, responsive images
+- Font optimization: subsetting, preloading, display strategies
+- Bundle analysis and tree shaking
+- Code splitting strategies: route-based, component-based
+
+**Critical rendering path**
+- Eliminate render-blocking resources
+- Minimize critical CSS
+- Defer non-critical JavaScript
+- Preload/prefetch/preconnect strategies
+
+**Project:** Optimize real-world app from 3s to <1s LCP. Document every optimization with before/after metrics. Handle 60fps animations with heavy DOM updates.
+
+---
+
+## Week 9 – Engine Modification & Debugging
+
+**JavaScript engine hacking**
+- Build V8 from source with custom patches
+- Add custom bytecode instructions
+- Instrument GC for detailed metrics
+- Profile JIT compilation decisions
+
+**Browser engine debugging**
+- Build Chromium/WebKit from source
+- Add custom tracing to layout engine
+- Modify rendering pipeline for instrumentation
+- Debug compositor thread interactions
+
+**WebAssembly integration**
+- Compile C/C++/Rust to WASM
+- Linear memory management
+- JS ↔ WASM interop optimization
+- SIMD and threads
+
+**Project:** Add custom profiling to browser engine. Build WASM module for computationally intensive task (image processing, physics simulation). Optimize JS/WASM boundary.
+
+---
+
+## Week 10 – Hardware Simulation & Constraints
+
+**Embedded systems**
+- Run minimal browser on microcontroller simulation
+- Memory-constrained rendering (64KB RAM)
+- CPU-constrained JavaScript (10MHz)
+- Display optimization for small screens
+
+**Stress testing**
+- Memory pressure simulation
+- CPU throttling
+- Network constraint testing (2G, 3G)
+- GPU bottleneck analysis
+
+**Project:** Port mini-browser to embedded environment. Optimize for extreme constraints. Document performance characteristics.
+
+---
+
+## Weeks 11-12 – Capstone Project
+
+**Build a complete system:**
+
+1. Custom browser engine with HTML/CSS/JS support
+2. React-like framework with Fiber and concurrent features
+3. SSR framework with streaming and hydration
+4. Production-optimized Next.js application
+5. Full performance profiling suite
+6. WebAssembly acceleration for critical paths
+7. Hardware constraint testing and optimization
+
+**Requirements:**
+- Render complex UIs at 60fps
+- Handle 10,000+ concurrent DOM updates
+- Sub-second initial page load
+- Progressive enhancement and graceful degradation
+- Comprehensive error handling and edge cases
+- Full performance documentation
+
+**Deliverable:** Production-ready system with complete understanding of every layer from CPU to pixels.
+
+---
+
+## Prerequisites
+
+- Strong C/C++ or Rust
+- Assembly language basics
+- Computer architecture knowledge
+- Operating systems fundamentals
+- Data structures and algorithms mastery
+
+## Outcome
+
+You will understand and have built:
+- CPU execution and memory management
+- Network protocols and servers
+- Browser engines (parsing, layout, paint, composite)
+- JavaScript engines (parser, interpreter, GC, event loop)
+- Virtual DOM and reconciliation
+- React internals and concurrent rendering
+- SSR and hydration systems
+- Performance profiling and optimization
+
+You'll debug and optimize at every level of the stack with complete confidence.
