@@ -256,13 +256,6 @@ Build your own coherent web platform.
 
 ---
 
-You’ll walk away with something rare:
-
-**Deep intuition across the entire stack — CPU → memory → network → rendering → JS → React.**  
-**The confidence to debug and optimize at any layer.**  
-**The ability to read/contribute to V8, Chromium, or similar codebases.**
-
----
 
 this path is hard ik everything in this world hard at start soon you gonna suffer and it will break you a little but at end winning only matters
 
