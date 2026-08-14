@@ -7,6 +7,12 @@ I wrote an article explaining exactly how modern React engineers should engineer
 
 that show how engineers serious about engineering this is what makes you different from the , and this course helps engineers learn real engineering learn keep screaming “React is slow” while they accidentally DDoS their own event loop with re-renders and state thrashing.
 
+People have a lot of misconceptions about React, and they’re tired of what React is today. What I’d say is that most of the frustration and complaints around React actually come from misunderstanding what React was designed to be, ngl.
+
+The points he makes are an exact reflection of the current state of React, and all of those claims are completely valid. [Example tweet](https://x.com/_coenen/status/2087900115474280580?s=20&utm_source=chatgpt.com)  i wrote something here on this take  (https://x.com/infinterenders/status/2087933704819949783?s=20)
+
+so lot of misconceptions around react. 
+
 The only real moat left? **Craft**.
 
 > “In the age of slop, craft is the differentiator.”  
